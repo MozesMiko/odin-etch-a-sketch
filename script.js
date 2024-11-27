@@ -6,14 +6,21 @@ let defaultValue = 4;
 let gridValue;
 
 function getValue() {
-  let gridValue = parseInt(prompt("How big do you want the new grid?", "Maximum value: 100"));
-  if(gridValue > 100) {
-    alert("Input value exceeds maximum. Grid size was set to 100.")
-    gridValue = 100;
-  } else if (isNaN(gridValue) || gridValue <= 0) {
+  let input = prompt("How big do you want the new grid?");
+
+  if (input === null) return;
+
+  gridValue = parseInt(input);
+
+  if (isNaN(gridValue) || gridValue <= 0) {
     alert("Invalid input detected. Please enter an integer between 1 and 100!");
     clear();
     return;
+  }
+
+  if(gridValue > 100) {
+    alert("Input value exceeds maximum. Grid size was set to 100.")
+    gridValue = 100;
   }
 
   document.querySelector(".container").innerHTML = "";
