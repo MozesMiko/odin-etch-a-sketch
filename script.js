@@ -1,10 +1,21 @@
 const container = document.querySelector(".container");
 const newGrid = document.querySelector("#newGrid");
 const refresh = document.querySelector("#refresh");
+let lastValue;
+let defaultValue = 4;
 let gridValue;
 
 function getValue() {
-  gridValue = prompt("How big do you want the new grid?", "Maximum value: 100");
+  let gridValue = parseInt(prompt("How big do you want the new grid?", "Maximum value: 100"));
+  if(gridValue > 100) {
+    alert("Input value exceeds maximum. Grid size was set to 100.")
+    gridValue = 100;
+  } else if (isNaN(gridValue) || gridValue <= 0) {
+    alert("Invalid input detected. Please enter an integer between 1 and 100!");
+    clear();
+    return;
+  }
+
   document.querySelector(".container").innerHTML = "";
   for(let j = 0; j < gridValue; j++) {
     const row = document.createElement("div");
